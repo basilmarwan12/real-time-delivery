@@ -12,6 +12,9 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 
 import java.time.Clock;
 import java.time.Instant;
@@ -83,7 +86,7 @@ class OrderServiceTest {
     }
 
     @Test
-    void getsAllOrders() {
+    void getsOrdersPage() {
         Order order = new Order(
                 UUID.randomUUID(),
                 UUID.randomUUID(),
@@ -92,12 +95,15 @@ class OrderServiceTest {
                 OrderStatus.CREATED,
                 Instant.parse("2026-10-01T12:00:00Z")
         );
-        when(orderRepository.findAll()).thenReturn(List.of(order));
+        PageRequest pageable = PageRequest.of(0, 20);
+        when(orderRepository.findAll(pageable)).thenReturn(new PageImpl<>(List.of(order), pageable, 1));
         OrderService service = new OrderService(orderRepository, kafkaTemplate);
 
-        List<OrderResponse> responses = service.getOrders();
+        Page<OrderResponse> responses = service.getOrders(pageable);
 
-        assertThat(responses).hasSize(1);
-        assertThat(responses.getFirst().orderId()).isEqualTo(order.getId());
+        assertThat(responses.getContent()).hasSize(1);
+        assertThat(responses.getContent().getFirst().orderId()).isEqualTo(order.getId());
+        assertThat(responses.getTotalElements()).isEqualTo(1);
+        assertThat(responses.getTotalPages()).isEqualTo(1);
     }
 }
