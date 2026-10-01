@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OrderCancelled",
+  "type": "object",
+  "required": ["eventId", "eventType", "eventVersion", "timestamp", "correlationId", "orderId", "reason"],
+  "properties": {
+    "eventId": { "type": "string", "format": "uuid" },
+    "eventType": { "const": "delivery.order.cancelled" },
+    "eventVersion": { "type": "integer", "minimum": 1 },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "correlationId": { "type": "string" },
+    "orderId": { "type": "string" },
+    "reason": { "type": "string" }
+  }
+}

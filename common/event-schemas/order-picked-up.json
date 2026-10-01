@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OrderPickedUp",
+  "type": "object",
+  "required": ["eventId", "eventType", "eventVersion", "timestamp", "correlationId", "orderId", "driverId"],
+  "properties": {
+    "eventId": { "type": "string", "format": "uuid" },
+    "eventType": { "const": "delivery.order.picked-up" },
+    "eventVersion": { "type": "integer", "minimum": 1 },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "correlationId": { "type": "string" },
+    "orderId": { "type": "string" },
+    "driverId": { "type": "string" }
+  }
+}

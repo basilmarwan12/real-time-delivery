@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OrderDelivered",
+  "type": "object",
+  "required": ["eventId", "eventType", "eventVersion", "timestamp", "correlationId", "orderId", "deliveredAt"],
+  "properties": {
+    "eventId": { "type": "string", "format": "uuid" },
+    "eventType": { "const": "delivery.order.delivered" },
+    "eventVersion": { "type": "integer", "minimum": 1 },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "correlationId": { "type": "string" },
+    "orderId": { "type": "string" },
+    "deliveredAt": { "type": "string", "format": "date-time" }
+  }
+}
