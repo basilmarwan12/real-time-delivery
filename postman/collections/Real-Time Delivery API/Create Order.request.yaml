@@ -1,0 +1,19 @@
+$kind: http-request
+description: >-
+  Creates a new delivery order. Returns 201 Created with the created order
+  (orderId, customerId, pickupAddress, deliveryAddress, status, createdAt).
+  Implemented in order-service OrderController (POST /api/v1/orders).
+method: POST
+url: '{{baseUrl}}/api/v1/orders'
+order: 1000
+headers:
+  - key: Content-Type
+    value: application/json
+body:
+  type: json
+  content: |-
+    {
+      "customerId": "{{customerId}}",
+      "pickupAddress": "123 Pickup St, City",
+      "deliveryAddress": "456 Delivery Ave, City"
+    }

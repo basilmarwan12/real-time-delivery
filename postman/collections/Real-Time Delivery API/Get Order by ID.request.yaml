@@ -1,0 +1,10 @@
+$kind: http-request
+description: >-
+  Returns a single order by its orderId. Implemented in order-service
+  OrderController (GET /api/v1/orders/{orderId} -> getOrderById).
+method: GET
+url: '{{baseUrl}}/api/v1/orders/{{orderId}}'
+order: 1400
+pathVariables:
+  - key: orderId
+    value: '{{orderId}}'

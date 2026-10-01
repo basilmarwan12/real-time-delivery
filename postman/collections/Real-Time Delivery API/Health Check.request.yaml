@@ -1,0 +1,5 @@
+$kind: http-request
+description: Spring Boot Actuator health endpoint exposed by the service.
+method: GET
+url: '{{baseUrl}}/actuator/health'
+order: 2000

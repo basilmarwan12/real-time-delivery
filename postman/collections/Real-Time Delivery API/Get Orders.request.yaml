@@ -1,0 +1,7 @@
+$kind: http-request
+description: >-
+  Returns a list of all orders. Implemented in order-service OrderController
+  (GET /api/v1/orders -> getOrders).
+method: GET
+url: '{{baseUrl}}/api/v1/orders'
+order: 1200

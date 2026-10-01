@@ -1,0 +1,5 @@
+$kind: http-request
+description: Spring Boot Actuator info endpoint exposed by the service.
+method: GET
+url: '{{baseUrl}}/actuator/info'
+order: 3000
